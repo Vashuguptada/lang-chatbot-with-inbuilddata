@@ -11,7 +11,7 @@ from langchain.llms import OpenAI
 #openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 
-def get_answer_csv(file: TextIO, query: str) -> str:
+def get_answer_csv(file_path: str, query: str) -> str:
     """
     Returns the answer to the given query by querying a CSV file.
 
@@ -24,11 +24,11 @@ def get_answer_csv(file: TextIO, query: str) -> str:
     """
     # Load the CSV file as a Pandas dataframe
     # df = pd.read_csv(file)
-    #df = pd.read_csv("titanic.csv")
+    df = pd.read_csv("sale.csv")
 
     # Create an agent using OpenAI and the Pandas dataframe
-    agent = create_csv_agent(OpenAI(temperature=0), file, verbose=False)
-    #agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
+    # agent = create_csv_agent(OpenAI(temperature=0), file, verbose=False)
+    agent = create_pandas_dataframe_agent(OpenAI(temperature=0), df, verbose=False)
 
     # Run the agent on the given query and return the answer
     #query = "whats the square root of the average age?"
